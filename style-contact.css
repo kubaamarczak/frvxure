@@ -1,0 +1,457 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --accent: #a755ff;
+    --white: #ffffff;
+    --black: #000000;
+}
+
+/* UNIVERSAL */
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1.5rem;
+    height: 6%;
+    background: #0d0018;
+    color: #ffffff;
+
+    background: rgba(0, 0, 0, 0.2); /* sehr leichtes Schwarz */
+    backdrop-filter: blur(12px);     /* das verschmilzt es mit dem BG */
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid transparent;
+    box-shadow: 0 0 25px rgba(0,0,0,0.45);
+
+    z-index: 1000;
+}
+
+.background-video {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
+    filter: saturate(0.8) contrast(1.05);
+}
+
+.background-overlay {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(
+        circle at top,
+        rgba(122,0,255,0.18),
+        rgba(0,0,0,0.5) 60%
+      );
+    z-index: -1;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+    
+    background-image: url("images/background_web.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+footer {
+    margin-top: 10rem;
+}
+
+@media (max-width: 600px) {
+    .background-video {
+      display: none;
+    }
+    .background-overlay {
+      background-image: url("images/background_web.png");
+    }
+}
+
+.hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-nav {
+    padding: 0;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    left: clamp(3.5rem, 6vw, 6rem);
+    gap: clamp(0.9rem, 2vw, 1.6rem);
+}
+
+.main-nav a {
+    margin-left: 0.2rem;
+    font-size: 0.8rem;
+    color: white;
+    text-align: center;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.9rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #e8ddff;
+    text-shadow: 0 0 6px rgba(122,0,255,0.7);
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    text-decoration: none;
+}
+
+.main-nav a:hover {
+    color:#a755ff;
+}
+
+.main-nav a.active {
+    color: var(--accent);
+    text-shadow: 0 0 8px rgba(122,0,255,0.9);
+    font-weight: 600;
+}
+  
+.main-nav a.active:hover {
+    color: var(--accent);
+}
+
+.main-nav a.active::after {
+    content: "";
+    display: block;
+    margin: 0 auto;
+    width: 60%;
+    height: 2px;
+    background: var(--accent);
+    border-radius: 999px;
+    margin-top: 4px;
+    box-shadow: 0 0 6px rgba(122,0,255,0.8);
+}
+
+/* Checkbox verstecken */
+.nav-toggle {
+    display: none;
+  }
+  
+  /* Burger-Icon (Desktop: hidden) */
+  .burger {
+    display: none;
+    position: absolute;
+    right: 1.25rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 28px;
+    height: 20px;
+    cursor: pointer;
+    z-index: 1100;
+  }
+  
+  .burger span {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #e8ddff;
+    border-radius: 999px;
+    box-shadow: 0 0 6px rgba(122,0,255,0.7);
+    transition: 0.2s ease;
+  }
+  
+  .burger span:nth-child(1) { top: 0; }
+  .burger span:nth-child(2) { top: 9px; }
+  .burger span:nth-child(3) { bottom: 0; }
+  
+  /* Burger wird zum X im Open-State */
+  .nav-toggle:checked + .burger span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+  }
+  .nav-toggle:checked + .burger span:nth-child(2) {
+    opacity: 0;
+  }
+  .nav-toggle:checked + .burger span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+  }
+  
+  /* MOBILE */
+  @media (max-width: 600px) {
+    .burger { display: block; }
+  
+    .main-nav {
+      position: fixed;
+      top: 6%;     /* oder z.B. 60px wenn dein Header fix 60px hoch ist */
+      left: 0;
+      width: 100vw;
+  
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+  
+      padding: 1rem 1.2rem;
+      background: rgba(0,0,0,0.75);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(232,221,255,0.08);
+  
+      transform: translateY(-120%);
+      transition: transform 0.25s ease;
+      z-index: 1050;
+    }
+  
+    /* nav öffnet sich */
+    .nav-toggle:checked + .burger + .main-nav {
+      transform: translateY(0);
+    }
+  
+    .main-nav a {
+      margin-left: 0;
+      font-size: 1.05rem;
+      text-align: left;
+    }
+  }
+
+/* Logo-Bild */
+.logo-img {
+    margin-left: -0.75rem;
+    padding-right: 1rem;
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 6px rgba(122,0,255,0.7));
+}
+
+/* CONTACT */
+.contact-hero {
+    min-height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem 1.5rem;
+    padding: 6rem 1.5rem 2rem;
+}
+
+.contact-hero button {
+    padding: 0.9rem 1.9rem;
+    border-radius: 999px;
+    border: 1px solid rgba(232,221,255,0.16);
+    background: rgba(0,0,0,0.55);
+    color: #e8ddff;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.9rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-shadow: 0 0 6px rgba(122,0,255,0.7);
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+
+    cursor: pointer;
+    transition: 
+        background 0.18s ease,
+        transform 0.18s ease,
+        box-shadow 0.18s ease,
+        border-color 0.18s ease;
+}
+
+.contact-hero button:hover {
+    background: rgba(122,0,255,0.25);
+    border-color: rgba(232,221,255,0.35);
+    box-shadow: 0 0 14px rgba(122,0,255,0.6);
+    transform: translateY(-2px);
+}
+
+.contact-hero button:active {
+    transform: translateY(0);
+    box-shadow: 0 0 8px rgba(122,0,255,0.4);
+}
+
+.contact-hero .mail {
+    background: linear-gradient(135deg, #7a00ff, #a755ff);
+    box-shadow: 0 0 18px rgba(122,0,255,0.8);
+    border-color: rgba(232,221,255,0.5);
+}
+
+.contact-hero .mail:hover {
+    background: linear-gradient(135deg, #8b1fff, #b66bff);
+}
+
+@media (max-width: 600px) {
+    .main {
+        overflow-y: auto;
+        max-height: 90vh;
+    }
+
+    main::-webkit-scrollbar {
+        display: none;
+    }
+    
+    .contact-hero {
+        align-items: stretch;
+        justify-content: flex-start;
+        padding-top: 5.5rem;
+        padding-bottom: 2.5rem;
+    }
+
+    .contact-hero button {
+        width: 100%;
+        justify-content: space-between;
+        font-size: 0.95rem;
+    }
+}
+
+/* hover subtitles für contact buttons */
+.contact-hero button {
+    position: relative; /* damit ::after sich am Button orientiert */
+}
+
+.contact-hero button::after {
+    content: attr(data-subtitle);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%) translateY(6px);
+    bottom: -1.4rem;
+
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(232,221,255,0.85);
+
+    opacity: 0;
+    pointer-events: none;
+    white-space: nowrap;
+    text-shadow: 0 0 4px rgba(0,0,0,0.9);
+    transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.contact-hero button:hover::after {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+@media (max-width: 600px) {
+    .contact-hero {
+        margin-top: 0.4rem;
+        overflow-y: auto;
+        max-height: 70vh;
+    }
+
+    .contact-hero::-webkit-scrollbar {
+        display: none;
+    }
+
+    .contact-hero button {
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      gap: 0.2rem;
+      padding: 0.9rem 1.2rem;
+    }
+  
+    .contact-hero button::after {
+      opacity: 1;
+      position: relative;
+      left: 0;
+      bottom: 0;
+      transform: none;
+      display: block;
+      margin-top: 0.15rem;
+    }
+
+    .contact-hero button:hover::after {
+        opacity: 1;
+        transform: translateX(-5%) translateY(0);
+    }
+}
+
+/* Default: kein Icon sichtbar */
+.contact-hero button::before {
+    content: "";
+    opacity: 0;
+    font-size: 1.3rem;
+    position: absolute;
+    left: 50%;
+    top: -2rem;
+    width: 22px;
+    height: 22px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transform: translateX(-50%);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+/* Hover: Icon wird eingeblendet */
+.contact-hero button:hover::before {
+    opacity: 1;
+    transform: translateY(0) translateX(-50%);
+}
+
+/* MAIL */
+.contact-hero .mail::before {
+    background-image: url("images/icons_cont/mail_icon.png");
+}
+
+/* INSTAGRAM */
+.contact-hero .instagram::before {
+    background-image: url("images/icons_cont/ig_icon.png");
+}
+
+/* TIKTOK */
+.contact-hero .tiktok::before {
+    background-image: url("images/icons_cont/tt_icon.png");
+}
+
+/* BEATSTARS */
+.contact-hero .beatstars::before {
+    background-image: url("images/icons_cont/bs_icon.png");
+}
+
+/* SPOTIFY */
+.contact-hero .spotify::before {
+    background-image: url("images/icons_cont/spotify_icon.png");
+}
+
+/* DISCORD */
+.contact-hero .discord::before {
+    background-image: url("images/icons_cont/dc_icon.png");
+}
+
+/* PINTEREST */
+.contact-hero .pinterest::before {
+    background-image: url("images/icons_cont/pt_icon.png");
+}
+
+/* LINKTREE */
+.contact-hero .linktree::before {
+    background-image: url("images/icons_cont/lt_icon.png");
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

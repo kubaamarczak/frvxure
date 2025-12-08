@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>frvxure - BEATS</title>
+    <link rel="stylesheet" href="style-beats.css">
+    <link rel="icon" type="image/png" sizes="256x256" href="images/tab_icon.PNG">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <video class="background-video" autoplay muted loop playinline>
+        <source src="videos/background_video.mp4" type="video/mp4">
+    </video>
+    <div class="background-overlay"></div>
+    <header>
+        <div class="logo">
+            <img src="images/tab_icon.png" alt="frvxure logo" class="logo-img">
+        </div>
+
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation">
+
+        <label for="nav-toggle" class="burger" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+
+        <nav class="main-nav">
+            <a href="index.html">home</a>
+            <a href="beats.html" class="active">beats</a>
+            <a href="kits.html">kits</a>
+            <a href="about.html">about</a>
+            <a href="contact.html">contact</a>
+            <a href="archive.html">archive</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="beatstash-hero">
+            <audio id="audio-player-stash"></audio>
+            <div class="heading"> BEATS </div>
+            <div class="beat-page">
+                <div class="table" id="table">
+                    <span id="th-number">#</span>
+                    <span id="th-title">title</span>
+                    <span id="th-bpm">bpm</span>
+                    <span id="th-key">key</span>
+                    <span id="th-length">length</span>
+                </div>
+                <div class="playlist-stash" id="playlist-stash">
+                    <!--tracks are appended here through scripts-beats.js-->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 frvxure</p>
+    </footer>
+
+    <div class="stash-volume">
+        <img class="vol-icon" id="stash-vol-icon" src="images/vol/vol_state_3.png" alt="volume icon"></img>
+        <input id="stash-volume-slider" type="range" min="0" max="100" value="80">
+        <span class="vol-value" id="stash-vol-value">80%</span>
+      </div>
+
+    <!-- Modal Overlay -->
+    <div id="modal-overlay" class="modal-overlay">
+
+        <!-- Modal Box -->
+        <div id="modal-box" class="modal-box">
+            <button class="modal-close" id="modal-close">✕</button>
+
+            <h2 id="modal-title">Track Title</h2>
+            <p id="modal-info">Track Info kommt hier rein</p>
+
+            <div class="modal-buttons"></div>
+        </div>
+    </div>  
+
+    <script src="scripts-beats.js"></script>
+</body>
+</html>

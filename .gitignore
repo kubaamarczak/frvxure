@@ -1,0 +1,18 @@
+# macOS
+.DS_Store
+
+# VSCode
+.vscode/
+
+# large files
+tracks/
+videos/
+kits/zips/
+kits/sample_preview/*.mp3
+kits/sample_preview/*.wav
+
+# other
+node_modules/
+dist/
+out/
+.env
