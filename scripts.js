@@ -8,16 +8,16 @@ const trackTitle = document.getElementById("track-title");
 
 // tracks
 const tracks = [
-    { title: "loophole", file: "tracks/loophole.mp3" },
-    { title: "TITANIUM", file: "tracks/TITANIUM.mp3" },
-    { title: "ALLEGIANCE", file: "tracks/ALLEGIANCE.mp3" },
-    { title: "SPATIALAUDIO", file: "tracks/SPATIALAUDIO.mp3" },
-    { title: "MORNINGSTAR", file: "tracks/MORNINGSTAR.mp3" },
-    { title: "SVTURN", file: "tracks/SVTURN.mp3" },
-    { title: "BLADE", file: "tracks/BLADE.mp3" },
-    { title: "LILAC", file: "tracks/LILAC.mp3" },
-    { title: "ARMORY", file: "tracks/ARMORY.mp3" },
-    { title: "GLOW", file: "tracks/GLOW.mp3" }
+    { title: "loophole", file: "https://ir0s4zzcogc30ok6.public.blob.vercel-storage.com/tracks/loophole.mp3" },
+    { title: "TITANIUM", file: "https://ir0s4zzcogc30ok6.public.blob.vercel-storage.com/tracks/TITANIUM.mp3" },
+    { title: "ALLEGIANCE", file: "https://ir0s4zzcogc30ok6.public.blob.vercel-storage.com/tracks/ALLEGIANCE.mp3" },
+    { title: "SPATIALAUDIO", file: "https://ir0s4zzcogc30ok6.public.blob.vercel-storage.com/tracks/SPATIALAUDIO.mp3" },
+    { title: "MORNINGSTAR", file: "https://ir0s4zzcogc30ok6.public.blob.vercel-storage.com/tracks/MORNINGSTAR.mp3" },
+    { title: "SVTURN", file: "https://ir0s4zzcogc30ok6.public.blob.vercel-storage.com/tracks/SVTURN.mp3" },
+    { title: "BLADE", file: "https://ir0s4zzcogc30ok6.public.blob.vercel-storage.com/tracks/BLADE.mp3" },
+    { title: "LILAC", file: "https://ir0s4zzcogc30ok6.public.blob.vercel-storage.com/tracks/LILAC.mp3" },
+    { title: "ARMORY", file: "https://ir0s4zzcogc30ok6.public.blob.vercel-storage.com/tracks/ARMORY.mp3" },
+    { title: "GLOW", file: "https://ir0s4zzcogc30ok6.public.blob.vercel-storage.com/tracks/GLOW.mp3" }
 ];
 
 // load first track
