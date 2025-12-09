@@ -252,6 +252,14 @@ footer {
     padding-top: 2rem;
 }
 
+.beats-tagline {
+    font-size: 0.95rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    opacity: 0.85;
+    margin-bottom: 0.8rem;
+}
+
 .playlist-stash {
     display: flex;
     flex-direction: column;
