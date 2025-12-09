@@ -1,3 +1,11 @@
+window.addEventListener("load", () => {
+  const bg = document.querySelector(".background-video");
+  if (!bg) return;
+  if (bg.paused) {
+    bg.play().catch(() => {});
+  }
+});
+
 // constants
 const audio = document.getElementById("audio-player");
 const playButton = document.getElementById("play");

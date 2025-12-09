@@ -1,3 +1,11 @@
+window.addEventListener("load", () => {
+    const bg = document.querySelector(".background-video");
+    if (!bg) return;
+    if (bg.paused) {
+      bg.play().catch(() => {});
+    }
+  });
+
 // Helper: open external links in new tab
 const openExternal = (url) => {
     window.open(url, "_blank", "noopener");

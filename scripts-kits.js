@@ -1,3 +1,11 @@
+window.addEventListener("load", () => {
+    const bg = document.querySelector(".background-video");
+    if (!bg) return;
+    if (bg.paused) {
+      bg.play().catch(() => {});
+    }
+  });
+
 // === KIT PREVIEW MODAL ===
 
 const previewBtn    = document.getElementById("kit-preview-btn");

@@ -1,3 +1,11 @@
+window.addEventListener("load", () => {
+    const bg = document.querySelector(".background-video");
+    if (!bg) return;
+    if (bg.paused) {
+      bg.play().catch(() => {});
+    }
+  });
+
 const stashPlayer = document.getElementById("audio-player-stash");
 const stashContainer = document.getElementById("playlist-stash");
 
