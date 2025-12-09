@@ -59,6 +59,7 @@ header {
         rgba(0,0,0,0.5) 60%
       );
     z-index: -1;
+    pointer-events: none;
 }
 
 body {
