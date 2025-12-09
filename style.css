@@ -44,6 +44,10 @@ header {
     filter: saturate(0.8) contrast(1.05);
 }
 
+video::-webkit-media-controls {
+    display:none !important;
+}
+
 .background-overlay {
     position: fixed;
     inset: 0;
