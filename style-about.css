@@ -270,6 +270,7 @@ main::-webkit-scrollbar {
     text-shadow: 0 0 14px rgba(122,0,255,0.9);
     margin-bottom: 0.5rem;
     color: #e8ddff;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
 .about-tagline {
@@ -278,6 +279,8 @@ main::-webkit-scrollbar {
     text-transform: uppercase;
     opacity: 0.8;
     margin-bottom: 0.9rem;
+    color: #e8ddff;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
 .about-intro {
@@ -292,6 +295,7 @@ main::-webkit-scrollbar {
     box-shadow: 0 0 18px rgba(122,0,255,0.35);
     display: inline-block;
     color: #e8ddff;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
 /* Artwork rechts */
