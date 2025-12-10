@@ -40,6 +40,7 @@ header {
     z-index: 1000;
 }
 
+/*
 .background-video {
     position: fixed;
     inset: 0;
@@ -53,14 +54,24 @@ header {
 video::-webkit-media-controls {
     display:none !important;
 }
+*/
+
+.background-image {
+    position: fixed;
+    inset: 0;
+    background-image: url("images/background_web.png");
+    background-size: cover;
+    background-position: center;
+    z-index: -2;
+}
 
 .background-overlay {
     position: fixed;
     inset: 0;
     background: radial-gradient(
         circle at top,
-        rgba(122,0,255,0.18),
-        rgba(0,0,0,0.5) 60%
+        rgba(122,0,255,0.2),
+        rgba(0,0,0,0.7) 70%
       );
     z-index: -1;
     pointer-events: none;
