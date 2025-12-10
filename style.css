@@ -64,8 +64,8 @@ video::-webkit-media-controls {
     inset: 0;
     background: radial-gradient(
         circle at top,
-        rgba(122,0,255,0.18),
-        rgba(0,0,0,0.5) 60%
+        rgba(122,0,255,0.10),
+        rgba(0,0,0,0.7) 70%
       );
     z-index: -1;
     pointer-events: none;
