@@ -31,6 +31,45 @@ const tracks = [
 // load first track
 let currentTrack = 0;
 
+function updateMediaSession(index) {
+  if (!('mediaSession' in navigator)) return;
+
+  const track = tracks[index];
+  if (!track) return;
+
+  navigator.mediaSession.metadata = new MediaMetadata({
+    title: track.title,
+    artist: 'frvxure',
+    album: 'MP3',
+    artwork: [
+      // hier irgendein Bild, das öffentlich erreichbar ist (auch auf Vercel)
+      { src: 'images/cover.png', sizes: '512x512', type: 'image/png' }
+      // du kannst später mehrere Größen angeben
+    ]
+  });
+
+  // Hardware-Buttons verknüpfen: Play/Pause/Nächster/Vorheriger
+  navigator.mediaSession.setActionHandler('play', () => {
+    audio.play().catch(() => {});
+  });
+
+  navigator.mediaSession.setActionHandler('pause', () => {
+    audio.pause();
+  });
+
+  navigator.mediaSession.setActionHandler('previoustrack', () => {
+    currentTrack = (currentTrack - 1 + tracks.length) % tracks.length;
+    loadTrack(currentTrack);
+    audio.play().catch(() => {});
+  });
+
+  navigator.mediaSession.setActionHandler('nexttrack', () => {
+    currentTrack = (currentTrack + 1) % tracks.length;
+    loadTrack(currentTrack);
+    audio.play().catch(() => {});
+  });
+}
+
 function loadTrack(index) {
     currentTrack = index;
     audio.src = tracks[index].file;
@@ -38,6 +77,9 @@ function loadTrack(index) {
         trackTitle.textContent = tracks[index].title;
     }
     progress.value = 0;
+
+    // Media Session Infos updaten
+    updateMediaSession(index);
 }
 
 loadTrack(currentTrack);

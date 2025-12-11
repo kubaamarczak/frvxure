@@ -116,7 +116,46 @@ function showNowPlaying(index) {
       nowPlayingToast.classList.remove("show");
     }, 10000); // 10s, kannst du anpassen
 }
+
+function updateMediaSessionForStash(index) {
+    if (!('mediaSession' in navigator)) return;
+    const track = stashTracks[index];
+    if (!track) return;
   
+    navigator.mediaSession.metadata = new MediaMetadata({
+      title: track.title,
+      artist: 'frvxure',
+      album: 'beatstash',
+      artwork: [
+        // du kannst mehrere Größen angeben, Browser nimmt was passt
+        { src: 'images/cover.png', sizes: '512x512', type: 'image/png' }
+        // gern auch andere, z.B.:
+        // { src: 'images/background_web.png', sizes: '1024x1024', type: 'image/png' }
+      ]
+    });
+  
+    // Optionale Action-Handler für Hardware-Buttons
+    navigator.mediaSession.setActionHandler('play', () => {
+      stashPlayer.play();
+    });
+  
+    navigator.mediaSession.setActionHandler('pause', () => {
+      stashPlayer.pause();
+    });
+  
+    navigator.mediaSession.setActionHandler('previoustrack', () => {
+      if (currentTrackIndex === null) return;
+      const prev = (currentTrackIndex - 1 + stashTracks.length) % stashTracks.length;
+      playStashTrack(prev);
+    });
+  
+    navigator.mediaSession.setActionHandler('nexttrack', () => {
+      if (currentTrackIndex === null) return;
+      const next = (currentTrackIndex + 1) % stashTracks.length;
+      playStashTrack(next);
+    });
+}
+
 // zentral: Track starten
 function playStashTrack(index) {
     currentTrackIndex = index;
@@ -125,6 +164,7 @@ function playStashTrack(index) {
     stashPlayer.play();
     updateUIState();
     showNowPlaying(index);
+    updateMediaSessionForStash(index);
 }
 
 // button play/pause
