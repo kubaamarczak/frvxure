@@ -16,16 +16,16 @@ const trackTitle = document.getElementById("track-title");
 
 // tracks
 const tracks = [
-    { title: "SPATIALAUDIO", file: "https://ir0s4zzcogc30ok6.public.blob.vercel-storage.com/tracks/SPATIALAUDIO.mp3" },
-    { title: "TITANIUM", file: "https://ir0s4zzcogc30ok6.public.blob.vercel-storage.com/tracks/TITANIUM.mp3" },
-    { title: "MORNINGSTAR", file: "https://ir0s4zzcogc30ok6.public.blob.vercel-storage.com/tracks/MORNINGSTAR.mp3" },
-    { title: "ATMOS", file: "https://ir0s4zzcogc30ok6.public.blob.vercel-storage.com/tracks/ATMOS.mp3" },
-    { title: "INDIGO", file: "https://ir0s4zzcogc30ok6.public.blob.vercel-storage.com/tracks/INDIGO.mp3" },
-    { title: "EROSION", file: "https://ir0s4zzcogc30ok6.public.blob.vercel-storage.com/tracks/EROSION.mp3" },
-    { title: "loophole", file: "https://ir0s4zzcogc30ok6.public.blob.vercel-storage.com/tracks/loophole.mp3" },
-    { title: "ALLEGIANCE", file: "https://ir0s4zzcogc30ok6.public.blob.vercel-storage.com/tracks/ALLEGIANCE.mp3" },
-    { title: "GLOW", file: "https://ir0s4zzcogc30ok6.public.blob.vercel-storage.com/tracks/GLOW.mp3" },
-    { title: "LIABILITY", file: "https://ir0s4zzcogc30ok6.public.blob.vercel-storage.com/tracks/LIABILITY.mp3" }
+  { title: "SPATIALAUDIO", file: "https://ir0s4zzcogc30ok6.public.blob.vercel-storage.com/tracks/SPATIALAUDIO.mp3", cover: "https://ir0s4zzcogc30ok6.public.blob.vercel-storage.com/cover_tracks/SPATIALAUDIO_cover.png" },
+  { title: "TITANIUM", file: "https://ir0s4zzcogc30ok6.public.blob.vercel-storage.com/tracks/TITANIUM.mp3", cover: "https://ir0s4zzcogc30ok6.public.blob.vercel-storage.com/cover_tracks/TITANIUM_cover.png" },
+  { title: "MORNINGSTAR", file: "https://ir0s4zzcogc30ok6.public.blob.vercel-storage.com/tracks/MORNINGSTAR.mp3", cover: "https://ir0s4zzcogc30ok6.public.blob.vercel-storage.com/cover_tracks/MORNINGSTAR_cover.png" },
+  { title: "ATMOS", file: "https://ir0s4zzcogc30ok6.public.blob.vercel-storage.com/tracks/ATMOS.mp3", cover: "https://ir0s4zzcogc30ok6.public.blob.vercel-storage.com/cover_tracks/ATMOS_cover.png" },
+  { title: "INDIGO", file: "https://ir0s4zzcogc30ok6.public.blob.vercel-storage.com/tracks/INDIGO.mp3", cover: "https://ir0s4zzcogc30ok6.public.blob.vercel-storage.com/cover_tracks/INDIGO_cover.png" },
+  { title: "EROSION", file: "https://ir0s4zzcogc30ok6.public.blob.vercel-storage.com/tracks/EROSION.mp3", cover: "https://ir0s4zzcogc30ok6.public.blob.vercel-storage.com/cover_tracks/EROSION_cover.png" },
+  { title: "loophole", file: "https://ir0s4zzcogc30ok6.public.blob.vercel-storage.com/tracks/loophole.mp3", cover: "https://ir0s4zzcogc30ok6.public.blob.vercel-storage.com/cover_tracks/loophole_cover.png" },
+  { title: "ALLEGIANCE", file: "https://ir0s4zzcogc30ok6.public.blob.vercel-storage.com/tracks/ALLEGIANCE.mp3", cover: "https://ir0s4zzcogc30ok6.public.blob.vercel-storage.com/cover_tracks/ALLEGIANCE_cover.png" },
+  { title: "GLOW", file: "https://ir0s4zzcogc30ok6.public.blob.vercel-storage.com/tracks/GLOW.mp3", cover: "https://ir0s4zzcogc30ok6.public.blob.vercel-storage.com/cover_tracks/GLOW_cover.png" },
+  { title: "LIABILITY", file: "https://ir0s4zzcogc30ok6.public.blob.vercel-storage.com/tracks/LIABILITY.mp3", cover: "https://ir0s4zzcogc30ok6.public.blob.vercel-storage.com/cover_tracks/LIABILITY_cover.png" }
 ];
 
 // load first track
@@ -37,15 +37,16 @@ function updateMediaSession(index) {
   const track = tracks[index];
   if (!track) return;
 
+  // fallback
+  const artwork = track.cover
+  ? [{ src: track.cover, sizes: '512x512', type: 'image/png' }]
+  : [{ src: 'images/cover.png', sizes: '512x512', type: 'image/png' }];
+
   navigator.mediaSession.metadata = new MediaMetadata({
     title: track.title,
     artist: 'frvxure',
     album: 'MP3',
-    artwork: [
-      // hier irgendein Bild, das öffentlich erreichbar ist (auch auf Vercel)
-      { src: 'images/cover.png', sizes: '512x512', type: 'image/png' }
-      // du kannst später mehrere Größen angeben
-    ]
+    artwork
   });
 
   // Hardware-Buttons verknüpfen: Play/Pause/Nächster/Vorheriger
