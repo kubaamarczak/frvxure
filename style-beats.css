@@ -735,7 +735,7 @@ footer {
   
     /* 10) Playlist etwas mehr Höhe, damit man scrollen kann */
     .playlist-stash {
-      max-height: 60vh;
+      max-height: 62vh;
       padding: 0.6rem;
       gap: 0.6rem;
     }
