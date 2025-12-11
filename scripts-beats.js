@@ -67,6 +67,11 @@ const stashTracks = [
     { title: "cursed", bpm: "147", key: "C#MIN", len: "2:02",  file: "https://ir0s4zzcogc30ok6.public.blob.vercel-storage.com/tracks/stash/cursed.mp3", free: "https://ir0s4zzcogc30ok6.public.blob.vercel-storage.com/tracks/stash/cursed.mp3", buy: "" }
 ];
 
+// Now playing toast
+const nowPlayingToast = document.getElementById("now-playing-toast");
+const nowPlayingTitle = document.getElementById("now-playing-title");
+let toastTimeout = null;
+
 // mechanism add tracks
 stashTracks.forEach((track, index) => {
     const item = document.createElement("div");
@@ -94,6 +99,34 @@ stashTracks.forEach((track, index) => {
 
 let currentTrackIndex = null;
 
+// Toast-Logik
+function showNowPlaying(index) {
+    if (!nowPlayingToast || !nowPlayingTitle) return;
+
+    const displayNumber = String(index + 1).padStart(2, "0");
+    const title = stashTracks[index]?.title || "";
+
+    // z.B. "#12 – SPATIALAUDIO"
+    nowPlayingTitle.textContent = `${displayNumber} - ${title}`;
+    nowPlayingToast.classList.add("show");
+
+    if (toastTimeout) clearTimeout(toastTimeout);
+
+    toastTimeout = setTimeout(() => {
+      nowPlayingToast.classList.remove("show");
+    }, 10000); // 10s, kannst du anpassen
+}
+  
+// zentral: Track starten
+function playStashTrack(index) {
+    currentTrackIndex = index;
+    stashPlayer.src = stashTracks[index].file;
+    stashPlayer.currentTime = 0;
+    stashPlayer.play();
+    updateUIState();
+    showNowPlaying(index);
+}
+
 // button play/pause
 stashContainer.addEventListener("click", (e) => {
     const btn = e.target.closest(".stash-play-button");
@@ -113,19 +146,10 @@ stashContainer.addEventListener("click", (e) => {
     }
 
     // anderer Track
-    currentTrackIndex = index;
-    stashPlayer.src = stashTracks[index].file;
-    stashPlayer.play();
-    updateUIState();
+    playStashTrack(index);
 });
 
-// TRACK ENDET
-stashPlayer.addEventListener("ended", () => {
-    currentTrackIndex = null;
-    stashPlayer.pause();
-    updateUIState();
-});
-
+// Volume 
 const volumeSlider = document.getElementById("stash-volume-slider");
 const volumeValue  = document.getElementById("stash-vol-value");
 const volumeIcon   = document.getElementById("stash-vol-icon");
@@ -291,5 +315,19 @@ stashContainer.addEventListener("click", (e) => {
   
     openModal(track.title, infoHtml);
   });
+
+// AUTOPLAY: wenn Track endet -> nächster
+stashPlayer.addEventListener("ended", () => {
+    if (currentTrackIndex === null) return;
+    const next = currentTrackIndex + 1;
+  
+    if (next < stashTracks.length) {
+      playStashTrack(next);
+    } else {
+      playStashTrack(0); // wieder vorne anfangen
+    }
+});
+
+
 
 

@@ -951,3 +951,51 @@ footer {
         text-align: center;
     }
 }
+
+.now-playing-toast {
+    position: fixed;
+    top: 1.2rem;
+    right: 1.5rem;
+    padding: 0.6rem 1rem;
+    border-radius: 999px;
+    background: rgba(0, 0, 0, 0.75);
+    border: 1px solid rgba(232, 221, 255, 0.12);
+
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #e8ddff;
+    text-shadow: 0 0 6px rgba(122,0,255,0.7);
+
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    z-index: 1200;
+}
+
+.now-playing-toast .np-label {
+    opacity: 0.7;
+}
+
+.now-playing-toast .np-title {
+    font-weight: 600;
+}
+
+/* sichtbar */
+.now-playing-toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* auf Handy ausblenden */
+@media (max-width: 600px) {
+    .now-playing-toast {
+        display: none;
+    }
+}
